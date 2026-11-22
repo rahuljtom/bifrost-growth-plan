@@ -9,208 +9,139 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
 <style>
-/* Bifrost brand: neutral greys, mint accent, Geist, [ LABEL ] eyebrows, corner-ticked panels. */
+/* Light only, Bifrost brand: neutral greys, mint accent, Geist, [ LABEL ] eyebrows. One idea per section, readable top to bottom. */
 :root{
   --bg:#F9FAFB; --card:#FFFFFF; --ink:#111827; --body:#4B5563; --muted:#6B7280; --hair:#E5E7EB;
   --mint:#33C09E; --mint-ink:#177B62; --mint-tint:#F1FAF6; --mint-tint2:#D4ECE1;
-  --amber:#B87412; --amber-tint:#FDF4E6; --brick:#C1553A; --brick-tint:#FBEAE5;
-  --code:#0B0D0C; --code-ink:#F3F4F6; --code-hi:#43D4AC;
-  --shadow:0 12px 30px rgba(20,50,40,.09);
+  --brick:#C1553A; --brick-tint:#FBEAE5; --code:#0B0D0C; --code-ink:#F3F4F6; --code-hi:#43D4AC;
+  --shadow:0 12px 30px rgba(20,50,40,.08);
   --sans:"Geist", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono:"Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --maxw:1060px;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0B0F0E; --card:#121816; --ink:#F3F4F6; --body:#C2C8D0; --muted:#8B95A1; --hair:#24302C;
-    --mint:#43D4AC; --mint-ink:#6FDDBE; --mint-tint:#10241E; --mint-tint2:#173A30;
-    --amber:#E8B45F; --amber-tint:#2C2212; --brick:#E8826A; --brick-tint:#2E1A15;
-    --code:#050706; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0B0F0E; --card:#121816; --ink:#F3F4F6; --body:#C2C8D0; --muted:#8B95A1; --hair:#24302C;
-  --mint:#43D4AC; --mint-ink:#6FDDBE; --mint-tint:#10241E; --mint-tint2:#173A30;
-  --amber:#E8B45F; --amber-tint:#2C2212; --brick:#E8826A; --brick-tint:#2E1A15;
-  --code:#050706; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+  color-scheme:light;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none!important} }
-body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15.5px; line-height:1.55;
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.55;
   padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));}
-.wrap{max-width:var(--maxw); margin:0 auto}
+.wrap{max-width:1000px; margin:0 auto}
 h1,h2,h3{margin:0; text-wrap:balance; font-weight:500}
-h1{font-size:clamp(1.9rem, 4.3vw, 3.1rem); line-height:1.1; letter-spacing:-.03em; font-weight:400}
+h1{font-size:clamp(1.9rem, 4.2vw, 3rem); line-height:1.1; letter-spacing:-.03em; font-weight:400}
 h1 span{color:var(--mint-ink)}
-h2{font-size:clamp(1.4rem, 2.6vw, 1.9rem); line-height:1.18; letter-spacing:-.02em; font-weight:400}
+h2{font-size:clamp(1.35rem, 2.5vw, 1.8rem); line-height:1.2; letter-spacing:-.02em; font-weight:400}
 h3{font-size:1rem}
 p{margin:0}
-code{font-family:var(--mono); font-size:.86em; overflow-wrap:anywhere}
+code{font-family:var(--mono); font-size:.86em}
 a{color:inherit; text-decoration-color:var(--mint); text-underline-offset:3px}
 :focus-visible{outline:2px solid var(--mint); outline-offset:2px; border-radius:4px}
 .eb{font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
 .eb::before{content:"[ "} .eb::after{content:" ]"}
-.sub{color:var(--body); max-width:66ch}
-.t{font-family:var(--mono); font-size:.62rem; padding:0 4px; border:1px solid var(--hair); border-radius:3px; color:var(--muted); vertical-align:2px; white-space:nowrap}
+.sub{color:var(--body); max-width:62ch}
+.t{font-family:var(--mono); font-size:.6rem; color:var(--muted); vertical-align:super; margin-left:1px}
 .note{font-size:.78rem; color:var(--muted)}
-section{padding-block:52px; border-top:1px solid var(--hair)}
-.head{display:grid; gap:10px; margin-bottom:24px}
+section{padding-block:48px; border-top:1px solid var(--hair)}
+.head{display:grid; gap:8px; margin-bottom:22px}
+.card{background:var(--card); border:1px solid var(--hair); border-radius:10px; padding:18px}
 .panel{position:relative; background:var(--card); border:1px solid var(--hair); border-radius:10px; padding:20px; box-shadow:var(--shadow)}
 .panel::before,.panel::after{content:""; position:absolute; width:12px; height:12px; border-color:var(--mint)}
 .panel::before{top:-1px; left:-1px; border-top:2px solid; border-left:2px solid; border-top-left-radius:10px}
 .panel::after{bottom:-1px; right:-1px; border-bottom:2px solid; border-right:2px solid; border-bottom-right-radius:10px}
-.flat{background:var(--card); border:1px solid var(--hair); border-radius:10px; padding:18px}
-.pill{display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; padding:3px 9px; border-radius:999px; border:1px solid var(--hair); background:var(--card); color:var(--body); white-space:nowrap}
+.pill{display:inline-flex; align-items:center; font-family:var(--mono); font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; padding:3px 9px; border-radius:999px; border:1px solid var(--hair); background:var(--card); color:var(--body); white-space:nowrap}
 .pill.ok{background:var(--mint-tint); border-color:var(--mint-tint2); color:var(--mint-ink)}
-.pill.warn{background:var(--amber-tint); border-color:transparent; color:var(--amber)}
 .pill.bad{background:var(--brick-tint); border-color:transparent; color:var(--brick)}
-.dot{width:7px; height:7px; border-radius:50%; background:currentColor}
-ul.tight{margin:0; padding-left:18px; display:grid; gap:5px; font-size:.9rem; color:var(--body)}
-ul.tight b{color:var(--ink); font-weight:500}
+ul.list{margin:0; padding-left:18px; display:grid; gap:6px; color:var(--body)}
+ul.list b{color:var(--ink); font-weight:500}
 
-.top{display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; padding-block:16px; font-family:var(--mono); font-size:.74rem; color:var(--muted)}
-.top nav{display:flex; gap:14px; flex-wrap:wrap}
-.top a{text-decoration:none} .top a:hover{color:var(--ink)}
+.top{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; padding-block:16px; font-family:var(--mono); font-size:.72rem; color:var(--muted)}
+.top nav{display:flex; gap:14px; flex-wrap:wrap} .top a{text-decoration:none} .top a:hover{color:var(--ink)}
 
-/* tables */
+.hero{border-top:0; padding-block:28px 48px; display:grid; gap:24px}
+.facts{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+.fact{border-top:1px solid var(--ink); padding-top:10px; display:grid; gap:2px}
+.fact b{font-size:1.6rem; font-weight:500; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+.fact span{font-size:.82rem; color:var(--body)}
+.fact.goal{border-top:2px solid var(--mint)} .fact.goal b{color:var(--mint-ink)}
+.plan3{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+.plan3 .card{display:grid; gap:6px}
+.plan3 .card p{font-size:.9rem; color:var(--body)}
+
+.three{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+.three .card{display:grid; gap:6px}
+.three b{font-size:1.15rem; font-weight:500}
+.three p{font-size:.9rem; color:var(--body)}
+
 .tw{overflow-x:auto; border:1px solid var(--hair); border-radius:10px; background:var(--card)}
-table{border-collapse:collapse; width:100%; font-size:.88rem}
-th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--hair); vertical-align:top}
+table{border-collapse:collapse; width:100%; font-size:.9rem}
+th,td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--hair); vertical-align:top}
 th{font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:500; background:var(--bg)}
 tr:last-child td{border-bottom:0}
 td b{font-weight:600}
 td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
 tr.hl td{background:var(--mint-tint)}
-.mk{font-family:var(--mono); font-size:.78rem}
-.mk.y{color:var(--mint-ink)} .mk.p{color:var(--amber)} .mk.n{color:var(--brick)}
-td.kill{color:var(--muted); font-size:.8rem}
-.w1{min-width:800px} .w2{min-width:820px} .w3{min-width:720px} .w4{min-width:700px}
+.w1{min-width:640px} .w2{min-width:640px} .w3{min-width:600px}
 
-/* code */
-pre.code{background:var(--code); color:var(--code-ink); border-radius:10px; padding:14px 16px; font-family:var(--mono); font-size:.8rem; line-height:1.6; overflow-x:auto; margin:0}
-pre.code .c{color:#7C8796} pre.code .h{color:var(--code-hi)}
-
-footer{padding-block:36px 56px; border-top:1px solid var(--hair); display:grid; gap:12px; font-size:.8rem; color:var(--muted)}
-details summary{cursor:pointer; font-family:var(--mono); font-size:.74rem; color:var(--ink)}
-details ul{margin:10px 0 0; padding-left:18px; display:grid; gap:4px}
-button{font:inherit; cursor:pointer}
-.btn{font-family:var(--mono); font-size:.74rem; letter-spacing:.04em; padding:8px 12px; border-radius:8px; border:1px solid var(--ink); background:var(--ink); color:var(--bg); text-decoration:none; display:inline-block}
-.btn.g{background:transparent; color:var(--ink); border-color:var(--hair)}
-.btn:disabled{opacity:.4; cursor:not-allowed}
-</style>
-<style>
-/* Layout: an executive one-pager that scrolls. Summary → why now → who → funnel (pinned) → my channel → bets → open source → playbooks → plan → ask → proof. */
-.hero{padding-block:32px 52px; display:grid; gap:26px; border-top:0}
-.hero .sub{font-size:1.06rem}
-.facts{display:grid; grid-template-columns:repeat(3,1fr) 1.15fr; gap:12px}
-.fact{border-top:1px solid var(--ink); padding-top:10px; display:grid; gap:4px; min-width:0}
-.fact b{font-size:1.7rem; font-weight:500; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
-.fact span{font-size:.82rem; color:var(--body)}
-.fact.target{border-top:2px solid var(--mint); background:var(--mint-tint); padding:10px 12px; border-radius:0 0 8px 8px}
-.fact.target b{color:var(--mint-ink)}
-.plan3{display:grid; grid-template-columns:auto 1fr; gap:10px 18px}
-.plan3 .k{font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); padding-top:3px}
-.why{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
-.why .flat{display:grid; gap:8px; align-content:start}
-.why b.n{font-size:1.35rem; font-weight:500; letter-spacing:-.02em}
-.why p{font-size:.88rem; color:var(--body)}
-.today{margin-top:14px; font-size:.9rem; color:var(--body)}
-
-.funnel{display:grid; grid-template-columns:280px 1fr; gap:36px}
-.fs{position:sticky; top:calc(env(safe-area-inset-top, 0px) + 20px); align-self:start}
+.funnel{display:grid; grid-template-columns:260px 1fr; gap:32px}
+.fs{position:sticky; top:20px; align-self:start}
 .fs svg{width:100%; height:auto; display:block}
 .band{fill:var(--card); stroke:var(--hair); stroke-width:1; transition:fill .3s, stroke .3s}
 .bl{font-family:var(--sans); font-size:14px; font-weight:500; fill:var(--ink)}
-.bs{font-family:var(--mono); font-size:9.5px; fill:var(--muted)}
 .lvl.on .band{fill:var(--mint-tint); stroke:var(--mint); stroke-width:1.6}
-.loop{fill:none; stroke:var(--mint); stroke-width:1.4; stroke-dasharray:4 4}
-.loopt{font-family:var(--mono); font-size:9px; fill:var(--mint-ink)}
-.steps{display:grid; gap:12px}
-.step{background:var(--card); border:1px solid var(--hair); border-radius:10px; padding:16px 18px; display:grid; gap:8px; transition:border-color .3s}
+.steps{display:grid; gap:10px}
+.step{background:var(--card); border:1px solid var(--hair); border-radius:10px; padding:14px 16px; display:grid; gap:6px; transition:border-color .3s}
 .step.on{border-color:var(--mint)}
-.r{display:grid; grid-template-columns:96px 1fr; gap:10px; font-size:.9rem}
-.r > span:first-child{font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); padding-top:3px}
-.r.leak > span:last-child{color:var(--brick)}
-.callout{border-left:2px solid var(--mint); padding:4px 0 4px 14px; font-size:1rem}
+.step h3{font-size:.95rem}
+.step p{font-size:.9rem; color:var(--body)}
+.step p.leak{color:var(--brick)}
+.callout{border-left:2px solid var(--mint); padding:4px 0 4px 14px}
 
-.ep{display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start}
-.ep .panel{display:grid; gap:12px}
+.two{display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start}
+.two .panel{display:grid; gap:12px}
 .chain{display:grid; gap:7px}
-.prov{display:flex; justify-content:space-between; align-items:center; gap:10px; border:1px solid var(--hair); border-radius:8px; padding:8px 12px; font-size:.86rem; transition:background .25s, border-color .25s, opacity .25s; background:var(--card)}
+.prov{display:flex; justify-content:space-between; align-items:center; gap:10px; border:1px solid var(--hair); border-radius:8px; padding:8px 12px; font-size:.88rem; transition:background .25s, border-color .25s, opacity .25s}
 .prov[data-s="live"]{border-color:var(--mint); background:var(--mint-tint)}
-.prov[data-s="cut"]{opacity:.55} .prov[data-s="cut"] .pn{text-decoration:line-through}
+.prov[data-s="cut"]{opacity:.5} .prov[data-s="cut"] .pn{text-decoration:line-through}
 .log{font-family:var(--mono); font-size:.74rem; background:var(--code); color:var(--code-ink); border-radius:8px; padding:9px 12px; min-height:3.2em; overflow-x:auto}
 .log b{color:var(--code-hi); font-weight:500}
+button{font:inherit; cursor:pointer}
+.btn{font-family:var(--mono); font-size:.74rem; padding:8px 12px; border-radius:8px; border:1px solid var(--ink); background:var(--ink); color:#fff; text-decoration:none; display:inline-block; justify-self:start}
+.btn.g{background:transparent; color:var(--ink); border-color:var(--hair)}
+.btn:disabled{opacity:.4; cursor:not-allowed}
 .btns{display:flex; gap:8px; flex-wrap:wrap}
-.spread{display:grid; grid-template-columns:.85fr 1.15fr; gap:26px; align-items:center; margin-top:22px}
-.map svg{width:100%; height:auto; display:block}
-.edge{stroke:var(--hair); stroke-width:2; transition:stroke .25s, stroke-width .25s}
-.edge.on{stroke:var(--mint); stroke-width:3}
-.hub{fill:var(--ink)} .hubt{fill:var(--bg); font-family:var(--sans); font-weight:500; font-size:15px} .hubs{fill:var(--bg); opacity:.75; font-family:var(--mono); font-size:9px}
-.rn{fill:var(--card); stroke:var(--hair); stroke-width:1.4; transition:fill .25s, stroke .25s}
-.rn.on{fill:var(--mint-tint); stroke:var(--mint)}
-.rnt{fill:var(--ink); font-family:var(--sans); font-weight:500; font-size:12px}
-.goal{fill:var(--mint-tint); stroke:var(--mint); stroke-width:1.4} .goalt{fill:var(--mint-ink); font-family:var(--mono); font-size:10.5px}
-.routes{display:grid; gap:6px}
-.route{display:grid; grid-template-columns:24px 1fr; gap:10px; text-align:left; background:transparent; border:1px solid var(--hair); border-radius:8px; padding:10px 12px; color:var(--ink); transition:border-color .2s, background .2s}
-.route:hover,.route[aria-pressed="true"]{border-color:var(--mint); background:var(--card)}
-.route .n{font-family:var(--mono); font-size:.76rem; color:var(--mint-ink)}
-.route b{display:block; font-weight:500; font-size:.9rem}
-.route .d{display:block; font-size:.83rem; color:var(--body); margin-top:3px}
-.convert{margin-top:16px; display:grid; gap:6px; padding:14px 16px; border-radius:10px; background:var(--mint-tint); border:1px solid var(--mint-tint2); font-size:.9rem}
-.score{display:grid; grid-template-columns:1.15fr .85fr; gap:18px; align-items:start; margin-top:22px}
-.qs{display:grid; gap:6px; margin:0; padding:0; border:0}
-.q{display:flex; justify-content:space-between; align-items:center; gap:12px; background:var(--card); border:1px solid var(--hair); border-radius:8px; padding:8px 12px; font-size:.86rem}
-.q > span:first-child{min-width:0}
-.yn{display:flex; gap:4px; flex-shrink:0}
-.yn input{position:absolute; opacity:0; width:1px; height:1px}
-.yn label{font-family:var(--mono); font-size:.7rem; padding:5px 9px; border:1px solid var(--hair); border-radius:6px; cursor:pointer}
-.yn input:checked + label{background:var(--ink); color:var(--bg); border-color:var(--ink)}
-.yn input:focus-visible + label{outline:2px solid var(--mint); outline-offset:2px}
-.res{display:grid; gap:10px}
-.meter{height:8px; border-radius:6px; background:var(--bg); overflow:hidden; border:1px solid var(--hair)}
-.meter i{display:block; height:100%; width:4%; background:var(--brick); transition:width .4s, background .4s}
-.verdict{font-size:1.6rem; font-weight:500; letter-spacing:-.02em}
-.gaps{margin:0; padding-left:18px; font-size:.84rem; color:var(--body); display:grid; gap:3px}
+.routes{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:16px}
+.route{background:var(--card); border:1px solid var(--hair); border-radius:10px; padding:14px; display:grid; gap:6px; align-content:start}
+.route .n{font-family:var(--mono); font-size:.72rem; color:var(--mint-ink)}
+.route b{font-weight:500; font-size:.92rem}
+.route p{font-size:.82rem; color:var(--body)}
+.convert{margin-top:12px; padding:14px 16px; border-radius:10px; background:var(--mint-tint); border:1px solid var(--mint-tint2); font-size:.92rem}
+.chan{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; font-size:.88rem; color:var(--body)}
+.chan b{color:var(--ink); font-weight:500; margin-right:6px}
 
-.two{display:grid; grid-template-columns:1fr 1fr; gap:16px}
-.two .panel{display:grid; gap:10px; align-content:start}
-.two .fail{font-size:.82rem; color:var(--muted); border-top:1px dashed var(--hair); padding-top:10px}
-.rules{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:14px}
-.rules div{border-top:2px solid var(--mint); padding-top:10px; display:grid; gap:4px; font-size:.84rem; color:var(--body)}
-.rules b{color:var(--ink); font-weight:500}
-.chan{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:20px}
-.chan > div{display:grid; gap:6px; align-content:start}
-.chan h3{font-family:var(--mono); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; padding-bottom:6px; border-bottom:1px solid var(--ink)}
-.chan .b h3{color:var(--mint-ink); border-color:var(--mint)} .chan .s h3{color:var(--brick); border-color:var(--brick)}
-.chan p{font-size:.86rem} .chan p span{color:var(--muted)}
-.tl{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:18px}
-.ph{border-left:2px solid var(--mint); padding:2px 0 2px 12px; display:grid; gap:6px}
-.ph h3{font-family:var(--mono); font-size:.74rem; letter-spacing:.06em}
-.ph ul{margin:0; padding-left:16px; font-size:.84rem; display:grid; gap:3px; color:var(--body)}
-.ask{display:grid; grid-template-columns:1.2fr .8fr; gap:16px}
+.tl{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:16px}
+.ph{border-left:2px solid var(--mint); padding:2px 0 2px 12px; display:grid; gap:4px}
+.ph h3{font-family:var(--mono); font-size:.72rem; letter-spacing:.06em}
+.ph p{font-size:.86rem; color:var(--body)}
 .proof{display:grid; grid-template-columns:repeat(5,1fr); gap:12px}
-.proof article{border-top:1px solid var(--ink); padding-top:10px; display:grid; gap:4px; min-width:0}
-.proof b{font-size:1.35rem; font-weight:500; letter-spacing:-.02em}
-.proof p{font-size:.8rem; color:var(--body)}
+.proof div{border-top:1px solid var(--ink); padding-top:10px; display:grid; gap:2px}
+.proof b{font-size:1.3rem; font-weight:500; letter-spacing:-.02em}
+.proof span{font-size:.8rem; color:var(--body)}
 
-@media (max-width: 900px){
+footer{padding-block:32px 48px; border-top:1px solid var(--hair); display:grid; gap:10px; font-size:.78rem; color:var(--muted)}
+details summary{cursor:pointer; font-family:var(--mono); font-size:.72rem; color:var(--ink)}
+details ul{margin:10px 0 0; padding-left:18px; display:grid; gap:4px}
+
+@media (max-width: 880px){
   .facts{grid-template-columns:repeat(2,1fr)}
-  .why,.two,.chan,.ep,.spread,.score,.ask{grid-template-columns:1fr}
-  .tl,.rules{grid-template-columns:repeat(2,1fr)}
+  .plan3,.three,.two,.chan{grid-template-columns:1fr}
+  .routes{grid-template-columns:repeat(2,1fr)}
+  .tl{grid-template-columns:repeat(2,1fr)}
   .proof{grid-template-columns:repeat(2,1fr)}
-  .funnel{grid-template-columns:1fr; gap:14px}
-  .fs{top:env(safe-area-inset-top, 0px); z-index:5; background:var(--bg); padding-block:6px}
-  .fs svg{max-height:136px}
+  .funnel{grid-template-columns:1fr; gap:12px}
+  .fs{top:0; z-index:5; background:var(--bg); padding-block:6px}
+  .fs svg{max-height:120px}
 }
 @media (max-width: 520px){
-  .facts,.tl,.rules,.proof{grid-template-columns:1fr}
-  .plan3{grid-template-columns:1fr; gap:2px}
-  .plan3 .k{padding-top:10px}
-  .r{grid-template-columns:1fr; gap:2px}
-  .q{flex-direction:column; align-items:flex-start}
-  section{padding-block:42px}
+  .facts,.routes,.tl,.proof{grid-template-columns:1fr}
+  section{padding-block:40px}
 }
 </style>
 </head>
@@ -219,287 +150,188 @@ button{font:inherit; cursor:pointer}
 
 <header class="top">
   <span>Bifrost growth plan · Rahul · take-home for Maxim AI · 22 Nov 2026</span>
-  <nav aria-label="Sections"><a href="#why">Why now</a><a href="#who">Who</a><a href="#funnel">Funnel</a><a href="#channel">My channel</a><a href="#playbooks">Playbooks</a><a href="#plan">90 days</a><a href="#proof">Proof</a></nav>
+  <nav aria-label="Sections"><a href="#why">Why now</a><a href="#who">Who</a><a href="#funnel">Funnel</a><a href="#channel">Channel</a><a href="#playbooks">Playbooks</a><a href="#plan">90 days</a></nav>
 </header>
 
-<!-- SUMMARY -->
 <section class="hero" aria-labelledby="h1">
   <p class="eb">Summary</p>
   <h1 id="h1">I'd make Bifrost the answer to one question:<br><span>"What's our plan if our model goes away?"</span></h1>
-  <p class="sub">I'd start with the Fortune 500 teams that build AI in India: global capability centres (GCCs) and IT services firms. Every GCC win is a global Fortune 500 logo, and I can reach those teams from India better than a US competitor can.</p>
+  <p class="sub">I'd start with the Fortune 500 teams that build AI in India. Every GCC win is a global Fortune 500 logo, and I can reach those teams from India.</p>
   <div class="facts">
-    <div class="fact"><b>2,117</b><span>GCCs in India; 1,200+ with AI/ML teams <span class="t">r</span></span></div>
-    <div class="fact"><b>350K</b><span>Cognizant employees getting Claude Code <span class="t">r</span></span></div>
-    <div class="fact"><b>0 of 4</b><span>India model-risk searches that surface any gateway <span class="t">v</span></span></div>
-    <div class="fact target"><b>5 accounts</b><span>My 90-day target: named Fortune 500 accounts in pilot or deal</span></div>
+    <div class="fact"><b>2,117</b><span>GCCs in India, 1,200+ with AI/ML teams<span class="t">r</span></span></div>
+    <div class="fact"><b>350K</b><span>Cognizant staff getting Claude Code<span class="t">r</span></span></div>
+    <div class="fact"><b>0 of 4</b><span>India model-risk searches naming any gateway<span class="t">v</span></span></div>
+    <div class="fact goal"><b>5</b><span>My 90-day target: Fortune 500 accounts in pilot</span></div>
   </div>
   <div class="plan3">
-    <span class="k">I'd own</span><span><b>The AI Model Exit Plan</b>: an open template plus a <code>bifrost exit-test</code> tool, spread through five outside channels, ending in a review.</span>
-    <span class="k">I'd bet</span><span><b>Sovereign fallback</b> with Sarvam, India's own model provider.</span>
-    <span class="k">I'd co-sell</span><span>With <b>one IT services partner on one named account</b> before building any partner programme.</span>
+    <div class="card"><span class="eb">I'd own</span><h3>The AI Model Exit Plan</h3><p>An open template plus an <code>exit-test</code> tool, spread through five outside channels.</p></div>
+    <div class="card"><span class="eb">I'd bet</span><h3>Sovereign fallback</h3><p>A joint launch with Sarvam, India's own model provider.</p></div>
+    <div class="card"><span class="eb">I'd co-sell</span><h3>One partner, one account</h3><p>With one IT services firm, before building any partner programme.</p></div>
   </div>
 </section>
 
-<!-- WHY NOW -->
 <section id="why" aria-labelledby="why-h">
   <div class="head"><p class="eb">Why now</p><h2 id="why-h">Every AI team will switch models. Few have a plan to do it.</h2></div>
-  <div class="why">
-    <div class="flat"><span class="eb">It recurs</span><b class="n">Retirements, prices, quality</b><p>Providers retire models on schedules. Sarvam itself deprecated <code>sarvam-m</code> <span class="t">v</span>. Every retirement is a forced exit.</p></div>
-    <div class="flat"><span class="eb">It happened</span><b class="n">12 June 2026</b><p>A US directive made Anthropic withdraw two new models <span class="t">r</span>. HFS told Indian IT firms to build fallbacks <span class="t">r</span>, and RBI calls AI-provider concentration a systemic risk <span class="t">r</span>.</p></div>
-    <div class="flat"><span class="eb">Nobody owns it</span><b class="n">No template, no gateway</b><p>No regulator publishes an AI exit template <span class="t">r</span>. Portkey now belongs to Palo Alto, and Anthropic's own gateway is Claude-only <span class="t">v</span>.</p></div>
+  <div class="three">
+    <div class="card"><b>It recurs</b><p>Providers retire models on a schedule. Sarvam itself deprecated <code>sarvam-m</code> this year<span class="t">v</span>.</p></div>
+    <div class="card"><b>It happened</b><p>On 12 June 2026, a US directive made Anthropic withdraw two new models<span class="t">r</span>.</p></div>
+    <div class="card"><b>Nobody owns it</b><p>There's no regulator template<span class="t">r</span>. Portkey now belongs to Palo Alto, and Anthropic's gateway is Claude-only<span class="t">v</span>.</p></div>
   </div>
 </section>
 
-<!-- WHO -->
 <section id="who" aria-labelledby="who-h">
-  <div class="head"><p class="eb">Who I'd target</p><h2 id="who-h">Today's users are invisible. I'd go after the people who own AI platforms.</h2></div>
+  <div class="head"><p class="eb">Who I'd target</p><h2 id="who-h">Today's users are invisible: 2.48M Docker pulls, 1,439 Discord members, no named logos<span class="t">v</span>.</h2></div>
   <div class="tw"><table class="w1">
-    <thead><tr><th>#</th><th>Segment</th><th>Who exactly</th><th>Why now</th><th>How I'd land</th></tr></thead>
+    <thead><tr><th>Segment</th><th>Why now</th><th>How I'd land</th></tr></thead>
     <tbody>
-      <tr class="hl"><td class="mk">1</td><td><b>Fortune 500 GCCs in India</b></td><td>Head of GenAI Platform; Director of Engineering Productivity</td><td>44% of GCCs own platforms <span class="t">r</span>; access rules can differ by citizenship <span class="t">a</span></td><td>Per-team model allowlists and tested fallback, self-hosted</td></tr>
-      <tr><td class="mk">2</td><td><b>Indian IT services firms</b></td><td>AI practice and delivery heads</td><td>Claude Code at Cognizant (350K) and TCS (50K) <span class="t">r</span></td><td>Edge and the Bifrost CLI to govern coding agents, then the Exit Plan to expand</td></tr>
-      <tr><td class="mk">3</td><td><b>Indian banks and insurers</b></td><td>CTO, Chief Risk Officer</td><td>RBI concentration language; DPDP deadline around May 2027 <span class="t">r</span></td><td>Routing to Claude on Bedrock India and to Sarvam</td></tr>
-      <tr><td class="mk">4</td><td><b>Indian open-source developers</b></td><td>AI engineers; students</td><td>India is the largest base of open-source contributors <span class="t">r</span></td><td>The 10K-star launch and a contributor loop</td></tr>
+      <tr class="hl"><td><b>1 · Fortune 500 GCCs in India</b></td><td>44% of GCCs now own platforms<span class="t">r</span></td><td>Per-team model allowlists and tested fallback, self-hosted</td></tr>
+      <tr><td><b>2 · Indian IT services firms</b></td><td>Claude Code going to 350K at Cognizant and 50K at TCS<span class="t">r</span></td><td>Edge and the Bifrost CLI to govern coding agents</td></tr>
+      <tr><td><b>3 · Indian banks and insurers</b></td><td>RBI calls AI-provider concentration a systemic risk<span class="t">r</span></td><td>Routing to Claude on Bedrock India and to Sarvam</td></tr>
+      <tr><td><b>4 · Open-source developers</b></td><td>India is the largest base of open-source contributors<span class="t">r</span></td><td>The 10K-star release and "good first issues"</td></tr>
     </tbody>
   </table></div>
-  <p class="today"><b>Today:</b> 9,945 stars and 2.48M Docker pulls, against 1,439 Discord members and no named logos <span class="t">v</span>.</p>
 </section>
 
-<!-- FUNNEL -->
 <section id="funnel" aria-labelledby="fun-h">
   <div class="head"><p class="eb">Where developers drop off</p><h2 id="fun-h">The fix I'd ship at each level.</h2></div>
   <div class="funnel">
     <div class="fs" aria-hidden="true">
-      <svg viewBox="0 0 300 410">
-        <g class="lvl" data-l="0"><path class="band" d="M8 8 H292 L278 72 H22 Z"/><text class="bl" x="150" y="38" text-anchor="middle">Hears about it</text><text class="bs" x="150" y="56" text-anchor="middle">search · AI answers · press</text></g>
-        <g class="lvl" data-l="1"><path class="band" d="M24 82 H276 L262 146 H38 Z"/><text class="bl" x="150" y="112" text-anchor="middle">Tries it</text><text class="bs" x="150" y="130" text-anchor="middle">quickstart</text></g>
-        <g class="lvl" data-l="2"><path class="band" d="M40 156 H260 L246 220 H54 Z"/><text class="bl" x="150" y="186" text-anchor="middle">Team adopts</text><text class="bs" x="150" y="204" text-anchor="middle">invisible today</text></g>
-        <g class="lvl" data-l="3"><path class="band" d="M56 230 H244 L230 294 H70 Z"/><text class="bl" x="150" y="260" text-anchor="middle">Production</text><text class="bs" x="150" y="278" text-anchor="middle">sizing · uptime</text></g>
-        <g class="lvl" data-l="4"><path class="band" d="M72 304 H228 L214 368 H86 Z"/><text class="bl" x="150" y="334" text-anchor="middle">Enterprise</text><text class="bs" x="150" y="352" text-anchor="middle">security · procurement</text></g>
-        <path class="loop" d="M228 350 C 296 350, 298 30, 292 30"/>
-        <text class="loopt" x="292" y="396" text-anchor="end">pilots feed configs back</text>
+      <svg viewBox="0 0 300 356">
+        <g class="lvl" data-l="0"><path class="band" d="M8 8 H292 L278 68 H22 Z"/><text class="bl" x="150" y="43" text-anchor="middle">Hears about it</text></g>
+        <g class="lvl" data-l="1"><path class="band" d="M24 78 H276 L262 138 H38 Z"/><text class="bl" x="150" y="113" text-anchor="middle">Tries it</text></g>
+        <g class="lvl" data-l="2"><path class="band" d="M40 148 H260 L246 208 H54 Z"/><text class="bl" x="150" y="183" text-anchor="middle">Team adopts</text></g>
+        <g class="lvl" data-l="3"><path class="band" d="M56 218 H244 L230 278 H70 Z"/><text class="bl" x="150" y="253" text-anchor="middle">Production</text></g>
+        <g class="lvl" data-l="4"><path class="band" d="M72 288 H228 L214 348 H86 Z"/><text class="bl" x="150" y="323" text-anchor="middle">Enterprise</text></g>
       </svg>
     </div>
     <div class="steps">
-      <article class="step" data-s="0"><span class="eb">1 · Hears about it</span>
-        <div class="r leak"><span>Leak</span><span>India model-risk searches name no gateway (0 of 4) <span class="t">v</span></span></div>
-        <div class="r"><span>I'd ship</span><span>The Exit Plan through five channels (below)</span></div></article>
-      <article class="step" data-s="1"><span class="eb">2 · Tries it</span>
-        <div class="r leak"><span>Leak</span><span>Local trials stall until <code>allow_private_network</code> is set <span class="t">v</span> my run</span></div>
-        <div class="r"><span>I'd ship</span><span>A docs PR that puts the flag on page one of the quickstart</span></div></article>
-      <article class="step" data-s="2"><span class="eb">3 · Team adopts</span>
-        <div class="r leak"><span>Leak</span><span>2.48M pulls, but no view of which companies run Bifrost <span class="t">v</span></span></div>
-        <div class="r"><span>I'd ship</span><span>Lead signals: stargazer company enrichment, docs visits by account, work-email sign-ups, scorecard results</span></div></article>
-      <article class="step" data-s="3"><span class="eb">4 · Production</span>
-        <div class="r leak"><span>Leak</span><span>Memory is the limit: OOM at 256 MB until <code>GOMEMLIMIT</code> is set <span class="t">v</span> my run</span></div>
-        <div class="r"><span>I'd ship</span><span>A one-line container sizing guide</span></div></article>
-      <article class="step" data-s="4"><span class="eb">5 · Enterprise</span>
-        <div class="r leak"><span>Leak</span><span>The champion sits in India; the budget often sits at US headquarters <span class="t">a</span></span></div>
-        <div class="r"><span>I'd ship</span><span>An exit-readiness memo the champion forwards to HQ; AWS Marketplace private offers</span></div></article>
-      <p class="callout">The biggest leak is between "tried it" and "talked to us". I'd judge every move on closing it.</p>
+      <article class="step" data-s="0"><h3>1 · Hears about it</h3><p class="leak">India model-risk searches name no gateway<span class="t">v</span></p><p>I'd ship the Exit Plan through five channels.</p></article>
+      <article class="step" data-s="1"><h3>2 · Tries it</h3><p class="leak">Local trials stall until <code>allow_private_network</code> is set<span class="t">v</span></p><p>I'd ship a docs fix on page one of the quickstart.</p></article>
+      <article class="step" data-s="2"><h3>3 · Team adopts</h3><p class="leak">Maxim can't see which companies run Bifrost<span class="t">v</span></p><p>I'd ship lead signals: stargazer companies, docs visits by account, work-email sign-ups.</p></article>
+      <article class="step" data-s="3"><h3>4 · Production</h3><p class="leak">Memory, not CPU, is the limit until <code>GOMEMLIMIT</code> is set<span class="t">v</span></p><p>I'd ship a one-line sizing guide.</p></article>
+      <article class="step" data-s="4"><h3>5 · Enterprise</h3><p class="leak">The champion is in India; the budget is often at US HQ<span class="t">a</span></p><p>I'd ship an exit-readiness memo the champion forwards to HQ.</p></article>
+      <p class="callout">The biggest leak is between "tried it" and "talked to us". Every move is judged on closing it.</p>
     </div>
   </div>
 </section>
 
-<!-- CHANNEL -->
 <section id="channel" aria-labelledby="ch-h">
-  <div class="head"><p class="eb">The channel I'd own end to end</p><h2 id="ch-h">One asset, spread through channels Bifrost doesn't have to build.</h2></div>
-  <div class="ep">
+  <div class="head"><p class="eb">The channel I'd own</p><h2 id="ch-h">One asset, spread through channels Bifrost doesn't have to build.</h2></div>
+  <div class="two">
     <div class="panel">
-      <span class="pill ok"><span class="dot"></span>The asset</span>
+      <span class="pill ok" style="justify-self:start">The asset</span>
       <h3>The AI Model Exit Plan</h3>
-      <ul class="tight">
-        <li><b>Template:</b> exit triggers, a named fallback per workflow, pass thresholds, the switch runbook. Mapped to RBI FREE-AI, DPDP and DORA <span class="t">r</span>.</li>
-        <li><b><code>bifrost exit-test</code>:</b> replays a team's own eval prompts through every fallback and outputs pass/fail evidence for auditors. Competitors can copy a template, but not a tool that runs on Bifrost. About 2–3 engineering days <span class="t">a</span>.</li>
-        <li><b>Launch:</b> at Bifrost's 10,000th GitHub star (9,945 today <span class="t">v</span>).</li>
+      <ul class="list">
+        <li><b>Template:</b> triggers, a named fallback per workflow, a pass bar, the switch runbook.</li>
+        <li><b><code>exit-test</code>:</b> replays a team's own prompts through every fallback and outputs evidence for auditors. A template can be copied; a tool that runs on Bifrost can't<span class="t">a</span>.</li>
+        <li><b>Launch:</b> at Bifrost's 10,000th GitHub star (9,945 today<span class="t">v</span>).</li>
       </ul>
       <a class="btn" href="exit-plan.html">Read my v0 draft →</a>
     </div>
     <div class="panel">
-      <div style="display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; align-items:center"><h3>What the plan configures</h3><span class="pill">Illustration</span></div>
+      <div style="display:flex; justify-content:space-between; gap:8px; align-items:center"><h3>What it configures</h3><span class="pill">Illustration</span></div>
       <div class="chain">
-        <div class="prov" data-i="0" data-s="live"><span class="pn">Claude · Anthropic API</span><span class="pill ok">serving</span></div>
-        <div class="prov" data-i="1" data-s="idle"><span class="pn">Claude · Bedrock, India region</span><span class="pill">fallback 1</span></div>
-        <div class="prov" data-i="2" data-s="idle"><span class="pn">GPT · OpenAI</span><span class="pill">fallback 2</span></div>
-        <div class="prov" data-i="3" data-s="idle"><span class="pn">sarvam-105b · Sarvam AI</span><span class="pill">fallback 3</span></div>
+        <div class="prov" data-s="live"><span class="pn">Claude · Anthropic API</span><span class="pill ok">serving</span></div>
+        <div class="prov" data-s="idle"><span class="pn">Claude · Bedrock, India region</span><span class="pill">fallback 1</span></div>
+        <div class="prov" data-s="idle"><span class="pn">GPT · OpenAI</span><span class="pill">fallback 2</span></div>
+        <div class="prov" data-s="idle"><span class="pn">sarvam-105b · Sarvam AI</span><span class="pill">fallback 3</span></div>
       </div>
       <div class="log" id="log" aria-live="polite"><b>200 OK</b> · served by Claude · Anthropic API</div>
       <div class="btns"><button class="btn" id="cut" type="button">Simulate loss of access</button><button class="btn g" id="reset" type="button">Reset</button></div>
-      <p class="note">My own run with mock providers: failover answered in 32 ms with no client change <span class="t">v</span>.</p>
+      <p class="note">My run, mock providers: failover in 32 ms, no client change<span class="t">v</span>.</p>
     </div>
   </div>
 
-  <div class="spread">
-    <div class="map">
-      <svg viewBox="0 0 420 410" role="img" aria-label="The Exit Plan at the centre, five routes around it, all ending in a review">
-        <line class="edge" data-r="0" x1="210" y1="180" x2="210" y2="50"/>
-        <line class="edge" data-r="1" x1="210" y1="180" x2="352" y2="116"/>
-        <line class="edge" data-r="2" x1="210" y1="180" x2="332" y2="280"/>
-        <line class="edge" data-r="3" x1="210" y1="180" x2="88" y2="280"/>
-        <line class="edge" data-r="4" x1="210" y1="180" x2="68" y2="116"/>
-        <line x1="210" y1="180" x2="210" y2="356" style="stroke:var(--mint); stroke-width:1.6; stroke-dasharray:4 4"/>
-        <circle class="hub" cx="210" cy="180" r="56"/>
-        <text class="hubt" x="210" y="178" text-anchor="middle">Exit Plan</text><text class="hubs" x="210" y="195" text-anchor="middle">template + exit-test</text>
-        <rect class="rn" data-r="0" x="150" y="20" width="120" height="34" rx="8"/><text class="rnt" x="210" y="42" text-anchor="middle">Press</text>
-        <rect class="rn" data-r="1" x="298" y="98" width="114" height="34" rx="8"/><text class="rnt" x="355" y="120" text-anchor="middle">Law firm</text>
-        <rect class="rn" data-r="2" x="276" y="264" width="126" height="34" rx="8"/><text class="rnt" x="339" y="286" text-anchor="middle">Scorecard</text>
-        <rect class="rn" data-r="3" x="18" y="264" width="140" height="34" rx="8"/><text class="rnt" x="88" y="286" text-anchor="middle">Partner</text>
-        <rect class="rn" data-r="4" x="8" y="98" width="120" height="34" rx="8"/><text class="rnt" x="68" y="120" text-anchor="middle">AI answers</text>
-        <rect class="goal" x="105" y="344" width="210" height="40" rx="20"/><text class="goalt" x="210" y="369" text-anchor="middle">45-min exit-plan review</text>
-      </svg>
-    </div>
-    <div class="routes" role="group" aria-label="Distribution routes">
-      <button class="route" type="button" data-r="0" aria-pressed="false"><span class="n">01</span><span><b>Press, with data rather than opinion</b><span class="d">After 100 scorecards, I'd pitch the aggregate ("X% of Indian AI teams have no tested fallback") to the outlets that covered June 12: Business Today, AIM, Inc42 <span class="t">r</span>.</span></span></button>
-      <button class="route" type="button" data-r="1" aria-pressed="false"><span class="n">02</span><span><b>One boutique tech-law firm</b><span class="d">Firms like Saga Legal and S.S. Rana publish FREE-AI and DPDP guides <span class="t">v</span>. I'd give one of them the technical runbook under their byline. It reaches General Counsels.</span></span></button>
-      <button class="route" type="button" data-r="2" aria-pressed="false"><span class="n">03</span><span><b>"How stranded are you?" scorecard</b><span class="d">Six questions, two minutes. A work-email result is a lead signal. Try it below.</span></span></button>
-      <button class="route" type="button" data-r="3" aria-pressed="false"><span class="n">04</span><span><b>One IT services partner</b><span class="d">I'd co-sell one named account with a firm that already serves a target GCC, and build the kit after the first deal.</span></span></button>
-      <button class="route" type="button" data-r="4" aria-pressed="false"><span class="n">05</span><span><b>AI answers</b><span class="d">Answer-first pages for 15 India model-risk prompts, measured in ChatGPT, Claude, Perplexity and Gemini, 3 runs each.</span></span></button>
-    </div>
+  <div class="routes">
+    <div class="route"><span class="n">01 · Press</span><b>Data, not opinion</b><p>A stat from 100 scorecards, pitched to the outlets that covered June 12.</p></div>
+    <div class="route"><span class="n">02 · Law firm</span><b>Their byline</b><p>A tech-law firm publishes the runbook to General Counsels.</p></div>
+    <div class="route"><span class="n">03 · Scorecard</span><b>"How stranded are you?"</b><p>Six questions; a work-email result is a lead.</p></div>
+    <div class="route"><span class="n">04 · Partner</span><b>One co-sell</b><p>An IT services firm that already serves a target GCC.</p></div>
+    <div class="route"><span class="n">05 · AI answers</span><b>15 prompts</b><p>Answer-first pages, measured in four AI engines.</p></div>
   </div>
-  <div class="convert">
-    <span><span class="pill ok">Conversion</span></span>
-    <span>Every route ends in a <b>45-minute exit-plan review</b>, open only to my 150 target accounts with a work email. Each review produces two things: an <b>exit-readiness memo</b> the champion forwards to US HQ, and a pilot proposal. Each lead goes to a US salesperson within 24 hours, with the Indian champion attached.</span>
-  </div>
-
-  <div class="score" id="scorecard">
-    <fieldset class="qs" id="qs"><legend class="eb" style="margin-bottom:6px">Route 03 · scorecard prototype</legend></fieldset>
-    <div class="panel res" aria-live="polite">
-      <span class="eb">Exposure</span>
-      <span class="verdict" id="verdict">Stranded</span>
-      <div class="meter"><i id="meter"></i></div>
-      <p id="line" class="note">0 of 6 safeguards in place.</p>
-      <ul class="gaps" id="gaps"></ul>
-    </div>
-  </div>
-</section>
-
-<!-- BETS -->
-<section aria-labelledby="bets-h">
-  <div class="head"><p class="eb">Bold bet · open source</p><h2 id="bets-h">One bet on someone else's audience, one on Bifrost's own community.</h2></div>
-  <div class="two">
-    <div class="panel">
-      <span class="pill warn">Bold bet</span>
-      <h3>Sovereign fallback, with Sarvam</h3>
-      <ul class="tight">
-        <li>I'd ask Sarvam for a small, concrete thing: a joint post and fallback credits, so <code>sarvam-105b</code> becomes Bifrost's last-resort model in one config line.</li>
-        <li>For Sarvam, it's distribution: its gap is enterprise adoption <span class="t">r</span>.</li>
-        <li>For Bifrost, it's India's sovereign-AI audience. HCLTech, a Sarvam investor <span class="t">r</span>, is the next call.</li>
-      </ul>
-      <p class="fail">Scope: customer-facing and Indic workloads. LiteLLM also lists Sarvam <span class="t">v</span>, so the edge is independence and self-hosting. If Sarvam declines, I publish the reference app myself.</p>
-    </div>
-    <div class="panel">
-      <span class="pill ok">Open source</span>
-      <h3>10K stars, then contributors</h3>
-      <ul class="tight">
-        <li><b>The 10K moment:</b> I'd ship Exit Plan v1 and <code>exit-test</code> as the community release at 10,000 stars.</li>
-        <li><b>Contributors:</b> "good first issue" labels on Indian providers, and a GSoC 2027 mentoring application <span class="t">a</span> dates to confirm.</li>
-        <li><b>Why it matters:</b> today's student contributors become the GCC and IT services engineers who choose tools <span class="t">a</span>.</li>
-      </ul>
-      <p class="fail">Metric: first-time contributors from India per month.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PLAYBOOKS -->
-<section id="playbooks" aria-labelledby="pb-h">
-  <div class="head"><p class="eb">Playbooks and rules</p><h2 id="pb-h">What worked elsewhere, the rule I took, and how I'd apply it.</h2></div>
-  <div class="tw"><table class="w2">
-    <thead><tr><th>Who</th><th>What they did</th><th>The rule</th><th>How I'd apply it to Bifrost</th></tr></thead>
-    <tbody>
-      <tr><td><b>Tailscale</b></td><td>A work-email sign-up ties the account to the company and starts an Enterprise trial <span class="t">v</span></td><td>Detect companies inside free usage</td><td>Treat work-email scorecards and sign-ups as lead signals</td></tr>
-      <tr><td><b>Snyk</b></td><td>Developers used it free; revenue came once a team sold governance to CISOs <span class="t">r</span></td><td>Developers adopt, risk owners buy</td><td>Write the Exit Plan for the risk owner, built on the free gateway</td></tr>
-      <tr><td><b>Cribl</b></td><td>A neutral router that won through alliances (CrowdStrike, Microsoft) <span class="t">r</span></td><td>Neutral products win through allies</td><td>Sell independence; let Sarvam and a partner carry it</td></tr>
-      <tr><td><b>Grafana Labs</b></td><td>Hyperscalers and 80+ channel partners sell it <span class="t">v</span></td><td>Let someone with reach sell</td><td>Co-sell with an IT services firm on a named account</td></tr>
-      <tr><td><b>TrueFoundry, Gravitee</b></td><td>Lead with Gartner listings and named logos <span class="t">v</span></td><td>Third-party proof beats self-claims</td><td>Use a law firm's byline and press data as the third party</td></tr>
-      <tr><td><b>Lakera (Gandalf)</b></td><td>A free interactive game became its enterprise channel <span class="t">v</span></td><td>Let buyers feel the problem</td><td>Use the scorecard to show a buyer their own exposure in two minutes</td></tr>
-    </tbody>
-  </table></div>
-  <div class="rules">
-    <div><b>Four tests</b>Only works for Bifrost; reaches the Fortune 500; one person can start it today; has a number.</div>
-    <div><b>Principle, not prop</b>I copy mechanisms, never campaigns.</div>
-    <div><b>No inflated claims</b>No "unhackable". No invented customers, quotes or metrics.</div>
-    <div><b>Fact discipline</b>Every fact tagged v, r or a; vendor figures attributed.</div>
-  </div>
-  <div class="tw" style="margin-top:16px"><table class="w3">
-    <thead><tr><th>Move vs the four tests</th><th>Only Bifrost</th><th>Fortune 500 reach</th><th>Start today</th><th>Number</th></tr></thead>
-    <tbody>
-      <tr><td><b>Exit Plan + exit-test</b></td><td class="mk y">● the tool needs Bifrost; the template alone wouldn't</td><td class="mk y">● GCCs, HQ memo</td><td class="mk y">● v0 is drafted</td><td class="mk y">● 0 of 4 → 10 of 15</td></tr>
-      <tr><td><b>Sarvam bet</b></td><td class="mk p">◐ LiteLLM lists Sarvam too</td><td class="mk p">◐ indirect for HQ</td><td class="mk y">● one email</td><td class="mk y">● pieces, inbound</td></tr>
-      <tr><td><b>Partner co-sell</b></td><td class="mk n">○ any gateway can partner</td><td class="mk y">● via the partner's client</td><td class="mk p">◐ needs a margin decision</td><td class="mk y">● 1 joint deal</td></tr>
-    </tbody>
-  </table></div>
+  <p class="convert"><b>Every route ends in a 45-minute exit-plan review</b> for my 150 target accounts. It produces a memo for US HQ and a pilot proposal, and the lead goes to sales within 24 hours.</p>
   <div class="chan">
-    <div class="b"><h3>I'd bet on</h3><p>The Exit Plan channel; India business press; a law firm; LinkedIn for GCC leaders; one partner; Sarvam.</p></div>
-    <div><h3>I'd keep</h3><p>Coding-agent cost content and dev.to. <span>Already strong in search <span class="t">v</span>; no more volume.</span></p></div>
-    <div class="s"><h3>I'd skip</h3><p>Hacker News for now <span>(stories score 1–5 points <span class="t">v</span>)</span>, X as a main channel, Reddit links, paid search, booths, more programmatic pages.</p></div>
+    <p><b>Bet:</b>the Exit Plan, India business press, one law firm, LinkedIn, one partner, Sarvam.</p>
+    <p><b>Skip:</b>Hacker News for now (stories score 1–5 points<span class="t">v</span>), X, Reddit links, paid search, booths.</p>
   </div>
 </section>
 
-<!-- PLAN -->
-<section id="plan" aria-labelledby="pl-h">
-  <div class="head"><p class="eb">My first 90 days</p><h2 id="pl-h">Validate first, then build, then scale or kill.</h2></div>
-  <div class="tl">
-    <div class="ph"><h3>Week 1</h3><ul><li>10 conversations with GCC platform heads</li><li>Kill rule: fewer than 3 call model exit a 2027 priority → I pivot the spine to coding-agent cost governance</li></ul></div>
-    <div class="ph"><h3>Days 1–30</h3><ul><li>Exit Plan v1 and scorecard live</li><li>Lead signals and dashboard</li><li>15-prompt baseline, logged in</li><li>Docs fixes; first 10 reviews</li></ul></div>
-    <div class="ph"><h3>Days 31–60</h3><ul><li><code>exit-test</code> and the 10K release</li><li>Law-firm edition; Sarvam post</li><li>First co-sell account</li></ul></div>
-    <div class="ph"><h3>Days 61–90</h3><ul><li>Press pitch with scorecard data</li><li>Reviews turning into pilots</li><li>1 named India reference</li><li>Scale, fix or kill each route</li></ul></div>
+<section aria-labelledby="bets-h">
+  <div class="head"><p class="eb">Bold bet · open source</p><h2 id="bets-h">Borrow Sarvam's audience. Use Bifrost's 10K moment.</h2></div>
+  <div class="two">
+    <div class="card" style="display:grid; gap:8px">
+      <h3>Sovereign fallback, with Sarvam</h3>
+      <ul class="list">
+        <li>I'd ask for a joint post and fallback credits: <code>sarvam-105b</code> as Bifrost's last-resort model in one config line.</li>
+        <li>Sarvam gets enterprise distribution; Bifrost gets India's sovereign-AI audience<span class="t">r</span>.</li>
+      </ul>
+      <p class="note">LiteLLM also lists Sarvam<span class="t">v</span>, so the edge is independence and self-hosting. If Sarvam says no, I publish the demo myself.</p>
+    </div>
+    <div class="card" style="display:grid; gap:8px">
+      <h3>10K stars, then contributors</h3>
+      <ul class="list">
+        <li>Exit Plan v1 and <code>exit-test</code> ship as the 10,000-star community release.</li>
+        <li>"Good first issues" on Indian providers, plus a GSoC 2027 application<span class="t">a</span>.</li>
+      </ul>
+      <p class="note">Metric: first-time contributors from India per month.</p>
+    </div>
   </div>
-  <div class="tw"><table class="w4">
-    <thead><tr><th>Metric</th><th>Baseline</th><th>D30</th><th>D60</th><th>D90</th><th>Kill rule</th></tr></thead>
+</section>
+
+<section id="playbooks" aria-labelledby="pb-h">
+  <div class="head"><p class="eb">Playbooks and rules</p><h2 id="pb-h">Rules I took from proven companies, and how I'd apply them.</h2></div>
+  <div class="tw"><table class="w2">
+    <thead><tr><th>From</th><th>The rule</th><th>How I'd apply it to Bifrost</th></tr></thead>
     <tbody>
-      <tr><td>Prompts naming Bifrost (15, logged-in engines)</td><td class="num">0 of 4 <span class="t">v</span> proxy</td><td class="num">baseline</td><td class="num">7</td><td class="num">10</td><td class="kill">Below 4 at D60 → rework pages</td></tr>
-      <tr><td>Scorecards completed · from target accounts</td><td class="num">0 · 0</td><td class="num">60 · 5</td><td class="num">150 · 15</td><td class="num">300 · 25</td><td class="kill">Under 60 total at D30 → change hook</td></tr>
-      <tr><td>Exit-plan reviews held</td><td class="num">0</td><td class="num">10</td><td class="num">20</td><td class="num">30</td><td class="kill">Under 10 at D45 → change offer</td></tr>
-      <tr><td>Reviews with a US HQ stakeholder present</td><td class="num">0</td><td class="num">—</td><td class="num">4</td><td class="num">10</td><td class="kill">Under 3 at D60 → rework the memo</td></tr>
-      <tr><td>Pipeline value</td><td class="num">0</td><td class="num">tracked</td><td class="num">tracked</td><td class="num">tracked</td><td class="kill">Against an ACV Maxim confirms <span class="t">a</span></td></tr>
-      <tr class="hl"><td><b>North star: target accounts in pilot or deal</b></td><td class="num">0</td><td class="num">—</td><td class="num">2</td><td class="num">5</td><td class="kill">—</td></tr>
+      <tr><td><b>Tailscale</b></td><td>Detect companies inside free usage (work email starts a trial)<span class="t">v</span></td><td>Work-email sign-ups and scorecards become lead signals</td></tr>
+      <tr><td><b>Snyk</b></td><td>Developers adopt, risk owners buy<span class="t">r</span></td><td>The Exit Plan is written for the risk owner</td></tr>
+      <tr><td><b>Cribl</b></td><td>Neutral products win through allies<span class="t">r</span></td><td>Sell independence; let Sarvam and a partner carry it</td></tr>
+      <tr><td><b>Grafana Labs</b></td><td>Let someone with reach sell for you<span class="t">v</span></td><td>Co-sell with an IT services firm</td></tr>
+      <tr><td><b>TrueFoundry</b></td><td>Third-party proof beats self-claims (Gartner, logos)<span class="t">v</span></td><td>A law firm's byline and press data</td></tr>
+      <tr><td><b>Lakera</b></td><td>Let buyers feel the problem (the Gandalf game)<span class="t">v</span></td><td>The scorecard shows a buyer their own exposure</td></tr>
     </tbody>
   </table></div>
-  <p class="note" style="margin-top:8px">Targets are my proposals, to agree with Maxim.</p>
+  <p class="note" style="margin-top:12px">My own rules for every idea: it only works for Bifrost, reaches the Fortune 500, can start today and has a number. I copy mechanisms, never campaigns, and never claim "unhackable".</p>
 </section>
 
-<!-- ASK -->
-<section aria-labelledby="ask-h">
-  <div class="head"><p class="eb">What I need, and what could go wrong</p><h2 id="ask-h">A small team and five decisions.</h2></div>
-  <div class="ask">
-    <div class="flat">
-      <ul class="tight">
-        <li><b>Engineering:</b> 2–3 days for <code>exit-test</code>, then about 20% of an engineer for reviews (30 × 45 min ≈ 23 hours).</li>
-        <li><b>Founder:</b> about 2 hours a week for bylines, Sarvam and the partner call.</li>
-        <li><b>Sales:</b> a US salesperson who picks up leads within 24 hours.</li>
-        <li><b>Decisions:</b> OK to cite regulators and name competitors; a partner margin <span class="t">a</span> ~20%; the ACV to model pipeline; whether Edge or the core gateway is the Enterprise priority.</li>
-      </ul>
-    </div>
-    <div class="flat">
-      <ul class="tight">
-        <li><b>The June news fades:</b> I lead with retirements and price changes, which never stop.</li>
-        <li><b>Validation fails:</b> the week-1 kill rule switches the spine.</li>
-        <li><b>It reads as political:</b> I frame it as continuity, not sovereignty.</li>
-      </ul>
-    </div>
+<section id="plan" aria-labelledby="pl-h">
+  <div class="head"><p class="eb">My first 90 days</p><h2 id="pl-h">Validate, build, then scale or kill.</h2></div>
+  <div class="tl">
+    <div class="ph"><h3>Week 1</h3><p>10 calls with GCC platform heads. Fewer than 3 who care → I pivot to coding-agent cost.</p></div>
+    <div class="ph"><h3>Days 1–30</h3><p>Exit Plan v1, scorecard, lead signals, docs fixes, first 10 reviews.</p></div>
+    <div class="ph"><h3>Days 31–60</h3><p><code>exit-test</code> and the 10K release, law-firm edition, Sarvam post, first co-sell.</p></div>
+    <div class="ph"><h3>Days 61–90</h3><p>Press pitch with scorecard data, pilots, one named India reference.</p></div>
   </div>
+  <div class="tw"><table class="w3">
+    <thead><tr><th>Metric</th><th>Now</th><th>Day 30</th><th>Day 60</th><th>Day 90</th></tr></thead>
+    <tbody>
+      <tr><td>AI-answer prompts naming Bifrost (of 15)</td><td class="num">0 of 4<span class="t">v</span></td><td class="num">baseline</td><td class="num">7</td><td class="num">10</td></tr>
+      <tr><td>Exit-plan reviews held</td><td class="num">0</td><td class="num">10</td><td class="num">20</td><td class="num">30</td></tr>
+      <tr><td>Reviews with a US HQ stakeholder</td><td class="num">0</td><td class="num">—</td><td class="num">4</td><td class="num">10</td></tr>
+      <tr class="hl"><td><b>Target accounts in pilot or deal</b></td><td class="num">0</td><td class="num">—</td><td class="num">2</td><td class="num">5</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note" style="margin-top:10px"><b>What I'd need:</b> 2–3 engineering days for <code>exit-test</code>, ~20% of an engineer for reviews, 2 founder hours a week, and a US salesperson for follow-up.</p>
 </section>
 
-<!-- PROOF -->
-<section id="proof" aria-labelledby="pr-h">
+<section aria-labelledby="pr-h">
   <div class="head"><p class="eb">Proof of work</p><h2 id="pr-h">What I've already done.</h2></div>
   <div class="proof">
-    <article><b>32 ms</b><p>Failover to the backup provider, with no client change <span class="t">v</span> my laptop, mock providers</p></article>
-    <article><b>250 req/s</b><p>Zero errors on a quarter CPU core; memory is the real limit <span class="t">v</span> v2.6.0</p></article>
-    <article><b>402</b><p>A budgeted virtual key blocked the next request <span class="t">v</span></p></article>
-    <article><b>0 of 4</b><p>India model-risk searches surfacing any gateway <span class="t">v</span> 22 Nov</p></article>
-    <article><b>v0</b><p><a href="exit-plan.html">The Exit Plan template</a>, drafted</p></article>
+    <div><b>32 ms</b><span>Failover, no client change<span class="t">v</span></span></div>
+    <div><b>250 req/s</b><span>Zero errors on ¼ CPU core<span class="t">v</span></span></div>
+    <div><b>402</b><span>Budgeted key blocked when spent<span class="t">v</span></span></div>
+    <div><b>0 of 4</b><span>India model-risk searches naming a gateway<span class="t">v</span></span></div>
+    <div><b>v0</b><span><a href="exit-plan.html">Exit Plan template</a> drafted</span></div>
   </div>
 </section>
 
 <footer>
-  <p><span class="t">v</span> verified by me, 21–22 Nov 2026 · <span class="t">r</span> reported by press or analysts · <span class="t">a</span> my assumption, to confirm. "0 of 4" used web search as a proxy for AI answers, one run per prompt. The fallback panel and scorecard are illustrations, not product UI. Independent candidate work; not affiliated with or endorsed by Maxim AI.</p>
+  <p><b>v</b> verified by me, 21–22 Nov 2026 · <b>r</b> reported by press or analysts · <b>a</b> my assumption. Bifrost tests ran on my laptop with mock providers (v2.6.0). "0 of 4" used web search as a proxy for AI answers. Independent candidate work; not affiliated with or endorsed by Maxim AI.</p>
   <details><summary>Sources</summary><ul>
-    <li><a href="https://yourstory.com/enterprise-story/2026/05/gccs-number-touch-2117-in-india-revenue-just-short-of-100-billion" target="_blank" rel="noopener">YourStory: 2,117 GCCs</a> · <a href="https://www.newkerala.com/news/a/nearly-44-pc-indias-gccs-now-own-platforms-634.htm" target="_blank" rel="noopener">44% of GCCs own platforms</a> · <a href="https://www.letsdatascience.com/news/anthropic-deploys-claude-code-across-indian-enterprises-63d635d7" target="_blank" rel="noopener">Claude Code at Cognizant, TCS</a></li>
-    <li><a href="https://www.businesstoday.in/technology/artificial-intelligence/story/indian-its-ai-partnerships-face-first-sovereignty-scare-after-us-curbs-anthropic-models-537149-2026-06-16" target="_blank" rel="noopener">Business Today: June 2026 directive</a> · <a href="https://www.hfsresearch.com/news/anthropic-pulling-the-plug-will-push-indian-it-firms-to-adopt-model-agnostic-architectures-ai-fallback-plans/" target="_blank" rel="noopener">HFS Research</a> · <a href="https://www.tribuneindia.com/news/business/rbi-flags-speed-concentration-opacity-as-key-risks-as-ai-use-grows-in-finance/" target="_blank" rel="noopener">RBI on concentration risk</a> · <a href="https://rbi.org.in/scripts/PublicationReportDetails.aspx?ID=1306" target="_blank" rel="noopener">RBI FREE-AI report</a></li>
-    <li><a href="https://docs.sarvam.ai/changelog/2026/6/5.md" target="_blank" rel="noopener">Sarvam changelog: sarvam-m deprecated</a> · <a href="https://docs.getbifrost.ai/providers/supported-providers/sarvam" target="_blank" rel="noopener">Bifrost: Sarvam provider</a> · <a href="https://docs.litellm.ai/docs/providers/sarvam" target="_blank" rel="noopener">LiteLLM: Sarvam provider</a> · <a href="https://theprint.in/opinion/why-arent-reliance-tata-infosys-using-sarvam-yet-it-means-nothing-if-no-one-builds-on-it/2961852/" target="_blank" rel="noopener">ThePrint on Sarvam adoption</a> · <a href="https://business-standard.com/technology/artificial-intelligence/hcltech-sarvam-ai-investment-sovereign-ai-policy-india-126061701260_1.html" target="_blank" rel="noopener">HCLTech invests in Sarvam</a></li>
-    <li><a href="https://www.legal500.com/firms/237811-saga-legal/c-india/news-and-developments/rbis-free-ai-framework-navigating-the-legal-and-regulatory-landscape" target="_blank" rel="noopener">Saga Legal on FREE-AI</a> · <a href="https://ssrana.in/articles/meity-notifies-final-digital-personal-data-protection-rules-2025/" target="_blank" rel="noopener">S.S. Rana on DPDP</a> · <a href="https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/" target="_blank" rel="noopener">GitHub Octoverse 2025</a> · <a href="https://www.paloaltonetworks.com/company/press/2026/palo-alto-networks-completes-acquisition-of-portkey-to-secure-ai-agents" target="_blank" rel="noopener">Palo Alto–Portkey</a></li>
-    <li><a href="https://tailscale.com/blog/pricing-v4" target="_blank" rel="noopener">Tailscale</a> · <a href="https://www.unusual.vc/field-guide/how-snyk-created-developer-first-security-company/" target="_blank" rel="noopener">Snyk</a> · <a href="https://redmonk.com/kfitzpatrick/2024/12/09/client-profile-cribl/" target="_blank" rel="noopener">Cribl</a> · <a href="https://grafana.com/press/2026/03/10/grafana-labs-signs-strategic-collaboration-agreement-with-aws-to-accelerate-open-observability-adoption-at-scale/" target="_blank" rel="noopener">Grafana</a> · <a href="https://www.businesswire.com/news/home/20260220396246/en/CORRECTING-and-REPLACING-TrueFoundry-Recognized-as-a-Representative-Vendor-in-Gartner-Market-Guide-for-AI-Gateways" target="_blank" rel="noopener">TrueFoundry in Gartner guide</a></li>
+    <li><a href="https://yourstory.com/enterprise-story/2026/05/gccs-number-touch-2117-in-india-revenue-just-short-of-100-billion" target="_blank" rel="noopener">2,117 GCCs</a> · <a href="https://www.newkerala.com/news/a/nearly-44-pc-indias-gccs-now-own-platforms-634.htm" target="_blank" rel="noopener">44% own platforms</a> · <a href="https://www.letsdatascience.com/news/anthropic-deploys-claude-code-across-indian-enterprises-63d635d7" target="_blank" rel="noopener">Claude Code at Cognizant and TCS</a></li>
+    <li><a href="https://www.businesstoday.in/technology/artificial-intelligence/story/indian-its-ai-partnerships-face-first-sovereignty-scare-after-us-curbs-anthropic-models-537149-2026-06-16" target="_blank" rel="noopener">June 2026 directive</a> · <a href="https://www.tribuneindia.com/news/business/rbi-flags-speed-concentration-opacity-as-key-risks-as-ai-use-grows-in-finance/" target="_blank" rel="noopener">RBI on concentration risk</a> · <a href="https://www.paloaltonetworks.com/company/press/2026/palo-alto-networks-completes-acquisition-of-portkey-to-secure-ai-agents" target="_blank" rel="noopener">Palo Alto–Portkey</a></li>
+    <li><a href="https://docs.sarvam.ai/changelog/2026/6/5.md" target="_blank" rel="noopener">Sarvam changelog</a> · <a href="https://docs.getbifrost.ai/providers/supported-providers/sarvam" target="_blank" rel="noopener">Bifrost Sarvam provider</a> · <a href="https://docs.litellm.ai/docs/providers/sarvam" target="_blank" rel="noopener">LiteLLM Sarvam provider</a> · <a href="https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/" target="_blank" rel="noopener">GitHub Octoverse 2025</a></li>
+    <li><a href="https://tailscale.com/blog/pricing-v4" target="_blank" rel="noopener">Tailscale</a> · <a href="https://www.unusual.vc/field-guide/how-snyk-created-developer-first-security-company/" target="_blank" rel="noopener">Snyk</a> · <a href="https://redmonk.com/kfitzpatrick/2024/12/09/client-profile-cribl/" target="_blank" rel="noopener">Cribl</a> · <a href="https://grafana.com/press/2026/03/10/grafana-labs-signs-strategic-collaboration-agreement-with-aws-to-accelerate-open-observability-adoption-at-scale/" target="_blank" rel="noopener">Grafana</a> · <a href="https://www.businesswire.com/news/home/20260220396246/en/CORRECTING-and-REPLACING-TrueFoundry-Recognized-as-a-Representative-Vendor-in-Gartner-Market-Guide-for-AI-Gateways" target="_blank" rel="noopener">TrueFoundry</a></li>
   </ul></details>
 </footer>
 </div>
@@ -511,32 +343,10 @@ button{font:inherit; cursor:pointer}
   function render(){provs.forEach(function(p,i){var s=i<cur?'cut':(i===cur?'live':'idle');p.dataset.s=s;var pl=p.querySelector('.pill');pl.className='pill'+(s==='live'?' ok':(s==='cut'?' bad':''));pl.textContent=s==='cut'?'access lost':(s==='live'?'serving':'fallback '+i);});}
   cut.addEventListener('click',function(){if(cur>=provs.length-1)return;var g=nm(cur);cur++;render();log.innerHTML='<b>200 OK</b> · '+g+' unavailable → '+nm(cur)+'<br>App code changed: none';if(cur>=provs.length-1){cut.disabled=true;cut.textContent='Last fallback reached';}});
   document.getElementById('reset').addEventListener('click',function(){cur=0;render();cut.disabled=false;cut.textContent='Simulate loss of access';log.innerHTML='<b>200 OK</b> · served by '+nm(0);});
-
   var steps=[].slice.call(document.querySelectorAll('.step')), lvls=[].slice.call(document.querySelectorAll('.lvl'));
   function setL(i){lvls.forEach(function(l){l.classList.toggle('on',+l.dataset.l===i);});steps.forEach(function(s){s.classList.toggle('on',+s.dataset.s===i);});}
   setL(0);
   if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)setL(+e.target.dataset.s);});},{rootMargin:'-40% 0px -50% 0px'});steps.forEach(function(s){io.observe(s);});}
-
-  var routes=[].slice.call(document.querySelectorAll('.route'));
-  function lit(r){document.querySelectorAll('.edge[data-r], .rn').forEach(function(el){el.classList.toggle('on',el.dataset.r===r);});routes.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.r===r?'true':'false');});}
-  routes.forEach(function(b){['click','mouseenter','focus'].forEach(function(ev){b.addEventListener(ev,function(){lit(b.dataset.r);});});});
-  lit('0');
-
-  var Q=[['If your primary model vanished tonight, could apps switch with no code change?','Add a gateway with an automatic fallback chain'],
-    ['Does every critical workflow have a named, tested fallback model?','Name and test a fallback for each workflow'],
-    ['Can you restrict which models each team may use?','Set per-team model allowlists'],
-    ['Can you show an auditor every AI request, by team?','Turn on audit logs by team'],
-    ['Does your gateway run inside your own cloud?','Self-host the gateway in your VPC'],
-    ['Do you know AI spend per team or client project?','Give each team or project its own key and budget']];
-  var qs=document.getElementById('qs');
-  Q.forEach(function(q,i){var d=document.createElement('div');d.className='q';d.innerHTML='<span>'+q[0]+'</span><span class="yn"><input type="radio" name="q'+i+'" id="q'+i+'y" value="1"><label for="q'+i+'y">Yes</label><input type="radio" name="q'+i+'" id="q'+i+'n" value="0" checked><label for="q'+i+'n">No</label></span>';qs.appendChild(d);});
-  var m=document.getElementById('meter'),v=document.getElementById('verdict'),ln=document.getElementById('line'),gp=document.getElementById('gaps');
-  function sc(){var y=0,miss=[];Q.forEach(function(q,i){var c=document.querySelector('input[name="q'+i+'"]:checked');if(c&&c.value==='1')y++;else miss.push(q[1]);});
-    var p=Math.round(y/Q.length*100),css=getComputedStyle(document.documentElement),lab=p<34?'Stranded':(p<67?'Exposed':'Covered'),tone=p<34?'--brick':(p<67?'--amber':'--mint');
-    m.style.width=Math.max(p,4)+'%';m.style.background=css.getPropertyValue(tone);v.textContent=lab;v.style.color=css.getPropertyValue(tone);
-    ln.textContent=y+' of '+Q.length+' safeguards in place.'+(miss.length?' Your Exit Plan starts with:':' Next: schedule a failover test.');
-    gp.innerHTML=miss.slice(0,3).map(function(t){return '<li>'+t+'</li>';}).join('');}
-  qs.addEventListener('change',sc);sc();
 })();
 </script>
 </body>
