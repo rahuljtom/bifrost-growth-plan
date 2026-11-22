@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Model Exit Plan</title>
+<meta name="description" content="v0 draft of an open AI Model Exit Plan template, with a Bifrost fallback appendix.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Bifrost brand: neutral greys, mint accent, Geist, [ LABEL ] eyebrows, corner-ticked panels. */
+:root{
+  --bg:#F9FAFB; --card:#FFFFFF; --ink:#111827; --body:#4B5563; --muted:#6B7280; --hair:#E5E7EB;
+  --mint:#33C09E; --mint-ink:#177B62; --mint-tint:#F1FAF6; --mint-tint2:#D4ECE1;
+  --amber:#B87412; --amber-tint:#FDF4E6; --brick:#C1553A; --brick-tint:#FBEAE5;
+  --code:#0B0D0C; --code-ink:#F3F4F6; --code-hi:#43D4AC;
+  --shadow:0 12px 30px rgba(20,50,40,.09);
+  --sans:"Geist", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --maxw:1060px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B0F0E; --card:#121816; --ink:#F3F4F6; --body:#C2C8D0; --muted:#8B95A1; --hair:#24302C;
+    --mint:#43D4AC; --mint-ink:#6FDDBE; --mint-tint:#10241E; --mint-tint2:#173A30;
+    --amber:#E8B45F; --amber-tint:#2C2212; --brick:#E8826A; --brick-tint:#2E1A15;
+    --code:#050706; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B0F0E; --card:#121816; --ink:#F3F4F6; --body:#C2C8D0; --muted:#8B95A1; --hair:#24302C;
+  --mint:#43D4AC; --mint-ink:#6FDDBE; --mint-tint:#10241E; --mint-tint2:#173A30;
+  --amber:#E8B45F; --amber-tint:#2C2212; --brick:#E8826A; --brick-tint:#2E1A15;
+  --code:#050706; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none!important} }
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15.5px; line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));}
+.wrap{max-width:var(--maxw); margin:0 auto}
+h1,h2,h3{margin:0; text-wrap:balance; font-weight:500}
+h1{font-size:clamp(1.9rem, 4.3vw, 3.1rem); line-height:1.1; letter-spacing:-.03em; font-weight:400}
+h1 span{color:var(--mint-ink)}
+h2{font-size:clamp(1.4rem, 2.6vw, 1.9rem); line-height:1.18; letter-spacing:-.02em; font-weight:400}
+h3{font-size:1rem}
+p{margin:0}
+code{font-family:var(--mono); font-size:.86em; overflow-wrap:anywhere}
+a{color:inherit; text-decoration-color:var(--mint); text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--mint); outline-offset:2px; border-radius:4px}
+.eb{font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.eb::before{content:"[ "} .eb::after{content:" ]"}
+.sub{color:var(--body); max-width:66ch}
+.t{font-family:var(--mono); font-size:.62rem; padding:0 4px; border:1px solid var(--hair); border-radius:3px; color:var(--muted); vertical-align:2px; white-space:nowrap}
+.note{font-size:.78rem; color:var(--muted)}
+section{padding-block:52px; border-top:1px solid var(--hair)}
+.head{display:grid; gap:10px; margin-bottom:24px}
+.panel{position:relative; background:var(--card); border:1px solid var(--hair); border-radius:10px; padding:20px; box-shadow:var(--shadow)}
+.panel::before,.panel::after{content:""; position:absolute; width:12px; height:12px; border-color:var(--mint)}
+.panel::before{top:-1px; left:-1px; border-top:2px solid; border-left:2px solid; border-top-left-radius:10px}
+.panel::after{bottom:-1px; right:-1px; border-bottom:2px solid; border-right:2px solid; border-bottom-right-radius:10px}
+.flat{background:var(--card); border:1px solid var(--hair); border-radius:10px; padding:18px}
+.pill{display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; padding:3px 9px; border-radius:999px; border:1px solid var(--hair); background:var(--card); color:var(--body); white-space:nowrap}
+.pill.ok{background:var(--mint-tint); border-color:var(--mint-tint2); color:var(--mint-ink)}
+.pill.warn{background:var(--amber-tint); border-color:transparent; color:var(--amber)}
+.pill.bad{background:var(--brick-tint); border-color:transparent; color:var(--brick)}
+.dot{width:7px; height:7px; border-radius:50%; background:currentColor}
+ul.tight{margin:0; padding-left:18px; display:grid; gap:5px; font-size:.9rem; color:var(--body)}
+ul.tight b{color:var(--ink); font-weight:500}
+
+.top{display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; padding-block:16px; font-family:var(--mono); font-size:.74rem; color:var(--muted)}
+.top nav{display:flex; gap:14px; flex-wrap:wrap}
+.top a{text-decoration:none} .top a:hover{color:var(--ink)}
+
+/* tables */
+.tw{overflow-x:auto; border:1px solid var(--hair); border-radius:10px; background:var(--card)}
+table{border-collapse:collapse; width:100%; font-size:.88rem}
+th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--hair); vertical-align:top}
+th{font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:500; background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td b{font-weight:600}
+td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
+tr.hl td{background:var(--mint-tint)}
+.mk{font-family:var(--mono); font-size:.78rem}
+.mk.y{color:var(--mint-ink)} .mk.p{color:var(--amber)} .mk.n{color:var(--brick)}
+td.kill{color:var(--muted); font-size:.8rem}
+.w1{min-width:800px} .w2{min-width:820px} .w3{min-width:720px} .w4{min-width:700px}
+
+/* code */
+pre.code{background:var(--code); color:var(--code-ink); border-radius:10px; padding:14px 16px; font-family:var(--mono); font-size:.8rem; line-height:1.6; overflow-x:auto; margin:0}
+pre.code .c{color:#7C8796} pre.code .h{color:var(--code-hi)}
+
+footer{padding-block:36px 56px; border-top:1px solid var(--hair); display:grid; gap:12px; font-size:.8rem; color:var(--muted)}
+details summary{cursor:pointer; font-family:var(--mono); font-size:.74rem; color:var(--ink)}
+details ul{margin:10px 0 0; padding-left:18px; display:grid; gap:4px}
+button{font:inherit; cursor:pointer}
+.btn{font-family:var(--mono); font-size:.74rem; letter-spacing:.04em; padding:8px 12px; border-radius:8px; border:1px solid var(--ink); background:var(--ink); color:var(--bg); text-decoration:none; display:inline-block}
+.btn.g{background:transparent; color:var(--ink); border-color:var(--hair)}
+.btn:disabled{opacity:.4; cursor:not-allowed}
+</style>
+<style>
+/* Layout: a document page. A numbered template (the order is the procedure), fill-in tables, then the Bifrost appendix. */
+.doc{max-width:820px; margin:0 auto}
+.doc section{padding-block:34px}
+.doc .lead{padding-block:28px 34px; border-top:0; display:grid; gap:14px}
+.doc h2{font-size:1.35rem}
+.doc .head{margin-bottom:14px}
+.doc p{color:var(--body); max-width:70ch}
+.doc p + p{margin-top:10px}
+.fill td{color:var(--muted); font-style:italic}
+.fill td:first-child{font-style:normal; color:var(--ink)}
+.steps-list{margin:0; padding-left:20px; display:grid; gap:6px; color:var(--body); font-size:.92rem}
+.map td:first-child{white-space:nowrap}
+.w5{min-width:640px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a href="index.html">← Back to the growth plan</a>
+  <span>AI Model Exit Plan · v0 draft · 22 Nov 2026</span>
+</header>
+
+<div class="doc">
+<section class="lead" aria-labelledby="h1">
+  <p class="eb">Template · v0</p>
+  <h1 id="h1">AI Model Exit Plan</h1>
+  <p>I drafted this as the asset at the centre of my growth plan. A team fills it in once, then tests it every quarter. It answers one question for the board, the auditor and the platform team: <b>if a model we depend on disappears, what happens, and how fast?</b></p>
+  <p class="note">Open template, free to reuse. It maps to regulations but doesn't certify compliance. Have your counsel review it.</p>
+</section>
+
+<section aria-labelledby="s1">
+  <div class="head"><p class="eb">Step 1</p><h2 id="s1">List the workflows in scope</h2></div>
+  <div class="tw"><table class="fill w5">
+    <thead><tr><th>Workflow</th><th>Primary model</th><th>Business owner</th><th>Max tolerable outage</th></tr></thead>
+    <tbody>
+      <tr><td>Example: customer-support assistant</td><td>provider/model</td><td>Head of Support</td><td>15 minutes</td></tr>
+      <tr><td>Example: coding agents (Claude Code, Codex)</td><td>provider/model</td><td>Engineering Productivity</td><td>4 hours</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section aria-labelledby="s2">
+  <div class="head"><p class="eb">Step 2</p><h2 id="s2">Name the exit triggers</h2></div>
+  <ul class="tight">
+    <li><b>Retirement:</b> the provider deprecates the model. Sarvam deprecated <code>sarvam-m</code> in 2026 <span class="t">v</span>.</li>
+    <li><b>Access restriction:</b> legal or jurisdictional limits. In June 2026 Anthropic withdrew two models after a US directive <span class="t">r</span>.</li>
+    <li><b>Price:</b> cost per request rises above a set ceiling.</li>
+    <li><b>Quality drift:</b> the eval pass rate drops below the threshold in Step 3.</li>
+    <li><b>Outage:</b> the provider fails for longer than the tolerable outage in Step 1.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="s3">
+  <div class="head"><p class="eb">Step 3</p><h2 id="s3">Name a fallback for each workflow, and set its pass bar</h2></div>
+  <div class="tw"><table class="fill w5">
+    <thead><tr><th>Workflow</th><th>Fallback 1</th><th>Fallback 2</th><th>Eval set</th><th>Pass threshold</th></tr></thead>
+    <tbody>
+      <tr><td>Customer-support assistant</td><td>same model, India region</td><td>another vendor</td><td>200 real tickets</td><td>≥ 90% of primary's score</td></tr>
+    </tbody>
+  </table></div>
+  <p style="margin-top:12px">A fallback that has never passed your own eval set isn't a fallback. It's a hope.</p>
+</section>
+
+<section aria-labelledby="s4">
+  <div class="head"><p class="eb">Step 4</p><h2 id="s4">Write the switch runbook</h2></div>
+  <ol class="steps-list">
+    <li>Automatic: the gateway retries and fails over on provider errors, with no code change.</li>
+    <li>Manual: the on-call engineer moves the primary to Fallback 1 in gateway config, not in application code.</li>
+    <li>Tell the business owner and log the event with time, cause and the model that served traffic.</li>
+    <li>Re-run the eval set on the serving model within 24 hours.</li>
+    <li>Review the trigger and update this plan.</li>
+  </ol>
+</section>
+
+<section aria-labelledby="s5">
+  <div class="head"><p class="eb">Step 5</p><h2 id="s5">Test it every quarter, and keep the evidence</h2></div>
+  <ul class="tight">
+    <li>Run the eval set through every fallback, and record pass or fail against the threshold.</li>
+    <li>Run one live failover drill in staging, and record time to recover.</li>
+    <li>Keep request logs that show which model served each request, by team.</li>
+    <li>Proposed tool: <code>bifrost exit-test</code> would do the first item automatically and export the report <span class="t">a</span>.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="s6">
+  <div class="head"><p class="eb">Mapping</p><h2 id="s6">Where this helps with regulation</h2></div>
+  <div class="tw"><table class="map w5">
+    <thead><tr><th>Framework</th><th>What it asks</th><th>Where this plan covers it</th></tr></thead>
+    <tbody>
+      <tr><td><b>RBI FREE-AI</b> (India)</td><td>Names reliance on a few AI providers as a systemic vulnerability; asks vendor contracts to cover AI risk <span class="t">r</span></td><td>Steps 1, 3 and 5</td></tr>
+      <tr><td><b>DPDP Rules</b> (India)</td><td>Audits and impact assessments for significant data fiduciaries, with compliance due around May 2027 <span class="t">r</span></td><td>Step 5 evidence</td></tr>
+      <tr><td><b>DORA</b> (EU)</td><td>Documented, tested exit strategies for critical ICT providers <span class="t">r</span></td><td>Steps 2–5</td></tr>
+      <tr><td><b>CSA paper</b> (June 2026)</td><td>Treats AI-provider concentration as a governance priority <span class="t">r</span></td><td>The whole plan</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section aria-labelledby="s7">
+  <div class="head"><p class="eb">Appendix</p><h2 id="s7">Implementing Step 4 in Bifrost</h2></div>
+  <p>Bifrost accepts an ordered <code>fallbacks</code> list on each request and reports which provider served it in <code>extra_fields.routing_info</code> <span class="t">v</span> docs. Model names below are placeholders.</p>
+  <pre class="code" style="margin-top:12px"><span class="c"># one request, four layers of protection</span>
+curl -X POST http://localhost:8080/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "anthropic/<span class="h">&lt;claude-model&gt;</span>",
+    "messages": [{"role": "user", "content": "..."}],
+    "fallbacks": [
+      "bedrock/<span class="h">&lt;claude-model, India region&gt;</span>",
+      "openai/<span class="h">&lt;gpt-model&gt;</span>",
+      "sarvam/<span class="h">sarvam-105b</span>"
+    ]
+  }'</pre>
+  <ul class="tight" style="margin-top:14px">
+    <li><b>Per-team allowlists and budgets:</b> issue each team a virtual key limited to approved models, with a hard budget. My own test returned a 402 once a budget was spent <span class="t">v</span>.</li>
+    <li><b>Evidence:</b> Bifrost's request logs record the provider that served each call. Enterprise adds audit logs, SSO and RBAC <span class="t">v</span> docs.</li>
+    <li><b>Measured:</b> on my laptop with mock providers, failover answered in 32 ms with no client change <span class="t">v</span>.</li>
+  </ul>
+  <p class="note" style="margin-top:12px">Sources: <a href="https://docs.getbifrost.ai/features/retries-and-fallbacks" target="_blank" rel="noopener">Bifrost retries and fallbacks</a> · <a href="https://docs.getbifrost.ai/providers/supported-providers/sarvam" target="_blank" rel="noopener">Bifrost Sarvam provider</a> · <a href="https://docs.sarvam.ai/changelog/2026/6/5.md" target="_blank" rel="noopener">Sarvam changelog</a> · <a href="https://rbi.org.in/scripts/PublicationReportDetails.aspx?ID=1306" target="_blank" rel="noopener">RBI FREE-AI</a> · <a href="https://particula.tech/blog/dora-exit-strategy-llm-provider" target="_blank" rel="noopener">DORA exit strategy</a> · <a href="https://labs.cloudsecurityalliance.org/research/ai-provider-concentration-risk-enterprise-resilience-v1-csa/" target="_blank" rel="noopener">CSA</a></p>
+</section>
+</div>
+
+<footer>
+  <p><span class="t">v</span> verified by me · <span class="t">r</span> reported · <span class="t">a</span> assumption. Draft by a candidate for a take-home; not affiliated with or endorsed by Maxim AI.</p>
+</footer>
+</div>
+</body>
+</html>
